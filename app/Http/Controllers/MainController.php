@@ -6,6 +6,7 @@ use App\BlogPost;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -96,6 +97,10 @@ class MainController extends Controller
 
     public function getOneGood($id) {
         $good = Product::find($id);
-        return ['data' => $good];
+        $good->product_images;
+        foreach($good->product_images as $image) {
+            $image['img'] = Storage::url($image['img']);
+        }
+        return $good;
     }
 }

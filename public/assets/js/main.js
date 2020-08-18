@@ -1056,14 +1056,108 @@ Array.from(linkForFetchingData).forEach(quckviewButton => {
 	quckviewButton.addEventListener('click', fetchDataForQuickView)
 })
 function fetchDataForQuickView () {
+	
 	let productId = this.getAttribute('data-id');
 	let link = this.getAttribute('data-link'); 
-	fetch(link)
-		.then((response) => {
-			console.log(response.json().data);
+	axios
+		.get(link)
+		.then(response => {
+			console.log(response.data)
+			fillModalWithData(response.data);
 		})
-		.catch(err => {
-
+		.catch(e => {
+			console.log(e)
 		})
 }
 
+
+
+function fillModalWithData ({id, name, price, description, product_images}) {
+	let quickViewModal = document.getElementById('quickk_view');
+	let quckViewBody = quickViewModal.querySelector('.modal-body')
+	quckViewBody.innerHTML = `
+		<div class="spinning-div-wrapper">
+			<div class="spinning-div"></div>
+		</div>
+	`
+
+	let sliderTopImages = ' ';
+	let sliderLowerImages = ''
+	product_images.forEach(el => {
+		
+		sliderTopImages += `<div class="pro-large-img"> <img src="${el.img}" alt=""/> </div>`;
+		
+		sliderLowerImages += `<div class="pro-nav-thumb"><img src="${el.img}" alt="" /> </div>`
+	})
+	if(product_images.length <= 3) {
+		sliderTopImages = sliderTopImages + sliderTopImages
+	
+		sliderLowerImages = sliderLowerImages + sliderLowerImages
+	}
+
+	let modalBody = `
+	<div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+								<div class="product-large-slider mb-20">
+                                    ${sliderTopImages}
+                                </div>
+                                <div class="pro-nav">
+                                    ${sliderLowerImages}
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="product-details-inner">
+                                    <div class="product-details-contentt">
+                                        <div class="pro-details-name mb-10">
+                                            <h3>${name}</h3>
+                                        </div>
+                                        <div class="price-box mb-15">
+                                            <span class="regular-price"><span class="special-price">${price} $</span></span>
+                                        </div>
+                                        <div class="product-detail-sort-des pb-20">
+                                            <p>${description}</p>
+                                        </div>
+                                        <div class="pro-quantity-box mb-30">
+                                            <div class="qty-boxx">
+                                                <button class="btn-cart lg-btn add-to-cart" data-link="http://qutti.loc/cart/add/${id}">add to cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+	`
+
+	quckViewBody.innerHTML = modalBody;
+
+	$('#quickk_view .product-large-slider').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		fade: true,
+		arrows: false,
+		asNavFor: '.pro-nav',
+		infinite:true,
+	});
+
+	// slick carousel active
+	$('#quickk_view .pro-nav').slick({
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		prevArrow: '<button type="button" class="arrow-prev"><i class="fa fa-long-arrow-left"></i></button>',
+		nextArrow: '<button type="button" class="arrow-next"><i class="fa fa-long-arrow-right"></i></button>',
+		asNavFor: '.product-large-slider',
+		centerMode: true,
+		arrows: true,
+		centerPadding: 0,
+		focusOnSelect: true,
+		infinite:true,
+	});
+
+	let cartButton = document.getElementsByClassName('add-to-cart');
+	Array.from(cartButton).forEach(btn => {
+		btn.removeEventListener('click', cartManipulations);
+		btn.addEventListener('click', cartManipulations);
+	})
+}

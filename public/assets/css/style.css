@@ -4820,3 +4820,36 @@ label {
 	align-items: center;
 }
 /*------slick arrow style for slider end------*/
+
+
+
+.spinning-div-wrapper{
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.spinning-div {
+    width: 100px;
+    height: 100px;
+    border: 10px solid #fedc19;
+    border-left-color: transparent;
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    border-radius: 50%; 
+    /* transform: rotate(3deg); */
+     /* transform: rotate(0.3rad);/ */
+     /* transform: rotate(3grad); */ 
+     /* transform: rotate(.03turn);  */
+  }
+  
+  @keyframes spin {
+      from {
+          transform:rotate(0deg);
+      }
+      to {
+          transform:rotate(360deg);
+      }
+  }

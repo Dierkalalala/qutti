@@ -413,42 +413,12 @@
                                         <div class="product-detail-sort-des pb-20">
                                             <p>Canon's press material for the EOS 5D states that it 'defines (a) new D-SLR category', while we're not typically too concerned</p>
                                         </div>
-                                        <div class="pro-details-list pt-20">
-                                            <ul>
-                                                <li><span>Availability :</span>In Stock</li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-availabily-option mt-15 mb-15">
-                                            <h3>Available Options</h3>
-                                            <div class="color-optionn">
-                                                <h4><sup>*</sup>color</h4>
-                                                <ul>
-                                                    <li>
-                                                        <a class="c-black" href="#" title="Black"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="c-blue" href="#" title="Blue"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="c-brown" href="#" title="Brown"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="c-gray" href="#" title="Gray"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="c-red" href="#" title="Red"></a>
-                                                    </li>
-                                                </ul> 
-                                            </div>
-                                        </div>
                                         <div class="pro-quantity-box mb-30">
                                             <div class="qty-boxx">
-                                                <label>qty :</label>
-                                                <input type="text" placeholder="0">
-                                                <button class="btn-cart lg-btn">add to cart</button>
+                                                <button class="btn-cart lg-btn add-to-cart">add to cart</button>
                                             </div>
                                         </div>
-                                        <div class="pro-social-sharing">
+                                        {{-- <div class="pro-social-sharing">
                                             <label>share :</label>
                                             <ul>
                                                 <li class="list-inline-item">
@@ -470,7 +440,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
