@@ -8,11 +8,6 @@
             <div class="col-12">
                 <div class="featured-cat-active owl-carousel owl-arrow-style">
                     @include('components.main.particles.featured-product')
-                    @include('components.main.particles.featured-product')
-                    @include('components.main.particles.featured-product')
-                    @include('components.main.particles.featured-product')
-                    @include('components.main.particles.featured-product')
-                    @include('components.main.particles.featured-product')
                 </div>
             </div>
         </div>

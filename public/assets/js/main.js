@@ -976,15 +976,14 @@ Array.from(removeButton).forEach(btn => {
 function cartManipulations(e){
 	e.preventDefault();
 	let link = this.getAttribute('data-link');
-	fetch(link)
+	axios
+		.get(link)
+		
 		.then((response) => {
-			console.log(response)
-			return response.json();
-		})
-		.then((data) => {
-			if(data == 1) {
+			console.log(response.data);
+			if(!!response === true) {
 				$.fancybox.open({
-					src  : '#added_good',
+					src  : `#${response.data}`,
 					type : 'inline',
 					opts : {
 						afterShow : function( instance, current ) {
@@ -995,7 +994,10 @@ function cartManipulations(e){
 					}
 				});
 			}
-		});
+		})
+		.catch((err) => {
+			console.log(err);
+		})
 }
 
 
@@ -1045,10 +1047,16 @@ function manupulateCartQuantity(e) {
 
 function fetchFromDataLink(el) {
 	let link = el.getAttribute('data-link');
-	fetch(link)
+	axios
+	
+		.get(link)
+
 		.then((response) => {
+			
 		})
+
 		.catch(err => {
+
 		})
 }
 let linkForFetchingData = document.querySelectorAll('.fetch_quick_view');
@@ -1062,7 +1070,6 @@ function fetchDataForQuickView () {
 	axios
 		.get(link)
 		.then(response => {
-			console.log(response.data)
 			fillModalWithData(response.data);
 		})
 		.catch(e => {
@@ -1160,4 +1167,94 @@ function fillModalWithData ({id, name, price, description, product_images}) {
 		btn.removeEventListener('click', cartManipulations);
 		btn.addEventListener('click', cartManipulations);
 	})
+}
+
+
+let topFilter = document.querySelectorAll('.top-cat-field');
+Array.from(topFilter).forEach(filteringElement => {
+	new RequestCommodities(filteringElement)
+})
+
+function RequestCommodities(input) {
+	this.input = input;
+
+	this.button = input.nextElementSibling;
+
+	let buttonWidth = this.button.getBoundingClientRect().width; 
+
+	let inputRect = input.getBoundingClientRect();
+
+	let inputFromTop = inputRect.bottom + pageYOffset;
+
+	let inputFromLeft = inputRect.left;
+
+	let inputWidth = inputRect.width;
+
+	this.input.addEventListener('input', fetchData);
+
+	this.input.addEventListener('blur', hideModal);
+
+	let link = input.getAttribute('data-ajax-link');
+	
+	let lifeSearch = document.querySelector('.life-search');
+
+	let lifeSearchWrapper = lifeSearch.querySelector('.life-search-wrapper');
+
+	function hideModal() {
+		lifeSearch.style.display = 'none';
+	}
+
+	function fetchData() {
+		let value = input.value;
+		axios
+		.post(link, {'product_name': value})
+		.then(response => {
+
+			let searchInnerElements = '';
+
+			lifeSearch.style.display = 'block';
+
+
+			if(response.data.length == 0) {
+				lifeSearchWrapper.innerHTML = '<p class="not-found"> Извините, по вашему запросу ничего не нашлось, попробуйте ввести что-нибудь другое </p>'
+				return false
+			}
+
+			Array.from(response.data).forEach(productObject => {
+				searchInnerElements += `
+				<li>
+					<a href="${productObject.link}" class="d-flex align-items-center">
+						<div class="search-img-wrap">
+							<img src="${productObject.img}" alt="">
+						</div>
+						<div>
+							<div class="search-product-name">
+								${productObject.name}
+							</div>                        
+							<div class="search-product-price">
+								$ ${productObject.price}
+							</div>
+						</div>
+					</a>
+				</li>
+				`
+			})
+
+			lifeSearchWrapper.innerHTML = searchInnerElements;
+			
+			lifeSearch.style.cssText = `
+				left: ${inputFromLeft}px;
+				top: ${inputFromTop}px;
+				max-width: ${inputWidth + buttonWidth}px;
+				width: ${inputWidth + buttonWidth}px;
+			`;
+			
+
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	}
+	
+
 }

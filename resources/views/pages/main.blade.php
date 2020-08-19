@@ -9,11 +9,8 @@
    
     @include('components.main.features')
 
-    
 
-
-
-    @include('components.main.products')
+    @include('components.main.recommended-products')
 
 
     @include('components.main.hot')

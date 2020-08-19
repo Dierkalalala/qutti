@@ -88,18 +88,18 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-12 order-sm-last">
                         <div class="header-middle-inner">
-                            <form action="{{ route('search') }}" method="POST">
+                            <form action="{{ route('search') }}" autocomplete="off" method="POST">
                                 @csrf
                                 <div class="top-cat hm1">
                                     <div class="search-form">
-                                         <select name="category">
+                                        {{--  <select name="category">
                                              @foreach ($categories as $cat) 
                                                 <option value="{{ $cat->code }}">{{ $cat->name }}</option>
                                              @endforeach
-                                        </select>
+                                        </select> --}}
                                     </div>
                                 </div>
-                                <input name="product_name" type="text" class="top-cat-field" placeholder="Найти ">
+                                <input data-ajax-link={{ route('ajax-search') }} name="product_name" type="text" class="top-cat-field" placeholder="Найти ">
                                 <input type="submit" class="top-search-btn" value="Найти">
                             </form>
                         </div>
@@ -456,9 +456,24 @@
             <h2>
                 Данный продукт был добавлен в вашу корзину!
             </h2>
-            <p>
+            <p class="mb-4">
                 Спасибо, что вы выбрали нас!
             </p>
+
+            <a href="{{ route('cart') }}" class="btn-1 home-btn">Перейти в корзину</a>
+
+        </div>
+    </div>
+    <div id="added_wishlist" class="modal commodity_added">
+        <div class="commodity-modal-text-box">
+            <h2>
+                Данный продукт был добавлен в избранное!
+            </h2>
+            <p class="mb-4">
+                Спасибо, что вы выбрали нас!
+            </p>
+
+            <a href="{{ route('wishlist') }}" class="btn-1 home-btn">Перейти в избранное</a>
         </div>
     </div>
     <div id="in_development" class="modal">
@@ -471,6 +486,13 @@
             </p>
         </div>
     </div>
+
+    <div id="live-search" class="life-search">
+        <ul class="life-search-wrapper"> 
+
+        </ul>
+    </div>
+
 	<!-- all js include here -->
     <script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }} "></script>
     <script src="{{ asset('assets/js/popper.min.js') }} "></script>

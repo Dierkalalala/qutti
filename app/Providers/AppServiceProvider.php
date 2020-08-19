@@ -40,6 +40,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer('components.main.particles.featured-product', function ($view) {
             $view->with('products', FeaturedProducts::get());
         });
+        
+        View::composer('components.main.recommended-products', function ($view) {
+            $view->with('products', FeaturedProducts::get());
+        });
 
         View::composer('pages.main', function ($view) {
             $view->with('categories', Category::where('is_popular', 1)->get());
@@ -48,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('components.main.hot', function ($view) {
             $brands = Brand::where('is_popular', 1)->get();
             foreach($brands as $brand){
-                $count;
+               
                 if(count($brand->products) <= 20) {
                     $count = count($brand->products);
                 } else {

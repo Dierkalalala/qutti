@@ -64,3 +64,4 @@ Route::get('/{categories}/{product}', 'MainController@product')->name('product')
 
 Route::get('/search/{categoryName}/{productName}', 'MainController@search_results')->name('search-results');
 
+Route::post('/ajaxsearch', 'MainController@search_ajax')->name('ajax-search');

@@ -38,8 +38,7 @@ class WishlistController extends Controller
             // dd($wishlist->products());
             $wishlist->products()->attach($product_id);
         }
-        dd($wishlist);
-        return true;
+        return 'added_wishlist';
     }
 
     public function removeFromWishlist($product_id)

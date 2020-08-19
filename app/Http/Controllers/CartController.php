@@ -35,7 +35,7 @@ class CartController extends Controller
         } else {
             $order->products()->attach($product_id);
         }
-        return true;
+        return 'added_good';
     }
 
     public function removeFromCart($product_id)

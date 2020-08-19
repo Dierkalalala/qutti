@@ -62,17 +62,36 @@ class MainController extends Controller
         return view('pages.blog', compact('posts'));
     }
 
+    public function search_ajax(Request $req) {
+        $productName = $req->product_name;
+        $products = Product::where('name', 'LIKE', '%'.$productName.'%')->limit(10)->get();
+        foreach ($products as $product) {
+            $product['img'] = Storage::url($product['img']);
+            $product['link'] = route('product', [$product->category['code'], $product['code']]);
+        }
+        return $products;
+    }
+
     public function search(Request $request) {
         $productName = $request->product_name;
-        $categoryCode = $request->category;
+
+        /* $isCategorySearched = Category::where('name', 'LIKE', '%'.$productName.'%')->first(); */
+        $products = Product::where('name', 'LIKE', '%'.$productName.'%')->get();
+
+        if($products) {
+            $categoryCode = $products[0]->category->code;
+        }
+
         return redirect()->route('search-results', [$categoryCode, $productName]);
     }
 
     public function search_results($categoryCode, $productName) {
+
         $category = Category::where('code', $categoryCode)->get()->first();
         $products = $category->products()
         ->where('name','LIKE','%'.$productName.'%')
-        ->orWhere('code','LIKE','%'.$productName.'%')->get();
+        ->orWhere('code','LIKE','%'.$productName.'%')
+        ->orWhere('category_id', $category->id)->get();
         return view('pages.search', ['products' => $products, 'queryName' => $productName ]);
     }
 
