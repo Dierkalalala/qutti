@@ -29,6 +29,16 @@
 
     <!-- Modernizer JS -->
     <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }} "></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6GGFEJFYKX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6GGFEJFYKX');
+</script>
 </head>
 <body>
 	<!--[if lte IE 9]>
@@ -493,13 +503,16 @@
         </ul>
     </div>
 
-	<!-- all js include here -->
+    <!-- all js include here -->
+    
     <script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }} "></script>
     <script src="{{ asset('assets/js/popper.min.js') }} "></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }} "></script>
     <script src="{{ asset('assets/js/plugins.js') }} "></script>
     <script src="{{ asset('assets/js/ajax-mail.js') }} "></script>
     <script src="{{ asset('assets/js/main.js') }} "></script>
+
+    
 </body>
 
 <!-- Mirrored from demo.hasthemes.com/sinrato-preview/sinrato/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 May 2020 05:24:10 GMT -->
