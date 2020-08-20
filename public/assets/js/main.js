@@ -1194,7 +1194,7 @@ function RequestCommodities(input) {
 
 	this.input.addEventListener('blur', hideModal);
 
-	document.addEventListener('touchstart', closeModal)
+	document.addEventListener('click', closeModal)
 
 	let link = input.getAttribute('data-ajax-link');
 	
@@ -1209,13 +1209,16 @@ function RequestCommodities(input) {
 	}
 
 	function closeModal(e) {
-		let path = e.composedPath();
 
+		let path = e.composedPath();
+		console.log(path)
 		Array.from(path).forEach( pathEl => {
 			if (
-				pathEl === this.input || pathEl == lifeSearchWrapper
+				pathEl === this.input || pathEl === lifeSearchWrapper
 			) { 
-				return false
+				console.log('not closing')
+				lifeSearch.style.display = 'block';
+				return false;
 			} else {
 				lifeSearch.style.display = 'none';
 			}

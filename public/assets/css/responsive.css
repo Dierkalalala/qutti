@@ -1866,7 +1866,9 @@
 
 
 @media (max-width: 767px) {
-
+    html{
+        cursor: pointer;
+    }
     .header-top-left {
         text-align: center;
     }
