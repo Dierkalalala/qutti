@@ -1194,7 +1194,7 @@ function RequestCommodities(input) {
 
 	this.input.addEventListener('blur', hideModal);
 
-	document.addEventListener('click', closeModal)
+	document.addEventListener('touchstart', closeModal)
 
 	let link = input.getAttribute('data-ajax-link');
 	
