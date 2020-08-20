@@ -30,15 +30,16 @@
     <!-- Modernizer JS -->
     <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }} "></script>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6GGFEJFYKX"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-175933391-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-6GGFEJFYKX');
+  gtag('config', 'UA-175933391-1');
 </script>
+
 </head>
 <body>
 	<!--[if lte IE 9]>
