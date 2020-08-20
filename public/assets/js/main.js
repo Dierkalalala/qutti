@@ -1194,6 +1194,8 @@ function RequestCommodities(input) {
 
 	this.input.addEventListener('blur', hideModal);
 
+	document.addEventListener('click', closeModal)
+
 	let link = input.getAttribute('data-ajax-link');
 	
 	let lifeSearch = document.querySelector('.life-search');
@@ -1201,7 +1203,24 @@ function RequestCommodities(input) {
 	let lifeSearchWrapper = lifeSearch.querySelector('.life-search-wrapper');
 
 	function hideModal() {
-		lifeSearch.style.display = 'none';
+		if(screen.width > 767) {
+			lifeSearch.style.display = 'none';
+		}
+	}
+
+	function closeModal(e) {
+		let path = e.composedPath();
+
+		Array.from(path).forEach( pathEl => {
+			if (
+				pathEl === this.input || pathEl == lifeSearchWrapper
+			) { 
+				return false
+			} else {
+				lifeSearch.style.display = 'none';
+			}
+		} )
+
 	}
 
 	function fetchData() {

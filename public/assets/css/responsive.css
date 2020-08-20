@@ -1870,7 +1870,12 @@
     .header-top-left {
         text-align: center;
     }
-
+    .product-caption .btn-cart{
+        opacity: 1;
+        visibility: visible;
+        right: 15px;
+        bottom: 25px;
+    }
     .header-top-left li {
         display: -webkit-box;
         display: -ms-flexbox;
