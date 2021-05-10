@@ -246,9 +246,9 @@
                                 </div>
                             </div>
                             <div class="link-follow">
-                                <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-                                <a href="https://twitter.com/"><i class="fa fa-telegram"></i></a>
-                                <a href="https://www.youtube.com/"><i class="fa fa-instagram"></i></a>
+                                <a href="https://t.me/quttiuzm"><i class="fa fa-facebook"></i></a>
+                                <a href="https://t.me/quttiuzm"><i class="fa fa-telegram"></i></a>
+                                <a href="https://www.instagram.com/qutti.uz/"><i class="fa fa-instagram"></i></a>
                             </div>
                         </div>
                         <!-- mailchimp-alerts Start -->
@@ -310,7 +310,7 @@
                             <div class="widget-body">
                                 <div class="footer-useful-link">
                                     <ul>
-                                        <li><span>Адрес:</span> 4710-4890 Breckinridge St,Fayetteville, NC 28311</li>
+                                        <li><span>Адрес:</span>Узбекистан Ташкент Посуда-Базар. 14 ряд 1 магазин</li>
                                         <li><a href="mailto:support@qutti.uz"><span>email:</span> support@qutti.uz</a></li>
                                         <li><a href="tel:+998977722954"><span>Позвоните нам:</span> <strong>+998977722954</strong></a></li>
                                     </ul>

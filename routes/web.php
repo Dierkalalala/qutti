@@ -28,6 +28,8 @@ Route::resource('/admin/featured', 'Admin\FeaturedProductsController');
 
 Route::get('/', 'MainController@index')->name('main');
 
+Route::get('/getcsvprod','MainController@get_cvs');
+
 Route::post('/search', 'MainController@search')->name('search');
 
 Route::get('/blog', 'MainController@blog')->name('blog');
@@ -65,3 +67,4 @@ Route::get('/{categories}/{product}', 'MainController@product')->name('product')
 Route::get('/search/{categoryName}/{productName}', 'MainController@search_results')->name('search-results');
 
 Route::post('/ajaxsearch', 'MainController@search_ajax')->name('ajax-search');
+

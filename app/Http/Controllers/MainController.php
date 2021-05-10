@@ -122,4 +122,55 @@ class MainController extends Controller
         }
         return $good;
     }
+
+
+    public function get_cvs(){
+        $products = Product::get();
+
+        foreach ($products as $product) {
+            $brand = $product->brand;
+            $category = $product->category;
+            $product->brand_id = $brand->name;
+            $product->category_id = $category->name;
+        }
+
+        $fileName = 'products.csv';
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('name', 'img', 'code', 'category', 'price', 'product_code', 'quantity', 'status', 'description', 'brand');
+
+        $callback = function() use($products, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($products as $product) {
+                $row['name'] = $product->name;
+                $row['img'] = $product->img;
+                $row['code'] = $product->code;
+                $row['category_id'] = $product->category_id;
+                $row['price'] = $product->price;
+                $row['product_code'] = $product->product_code;
+                $row['quantity'] = $product->quantity;
+                $row['status'] = $product->status;
+                $row['description'] = $product->description;
+                $row['brand_id'] = $product->brand_id;
+
+                fputcsv($file, array($row['name'], $row['img'], $row['code'], $row['category_id'], $row['price'], $row['product_code'], $row['quantity'], $row['status'], $row['description'], $row['brand_id']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    
+
 }
